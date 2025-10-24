@@ -12,33 +12,22 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Plus, FileText, LogOut, Home } from "lucide-react";
-import { Quiz } from "@/models/Quiz";
-import { useEffect, useState } from "react";
+import { signOut } from "next-auth/react";
 
-export default function AppSidebar() {
+export default function AppSidebar({
+  quizzes,
+}: {
+  quizzes: { _id: string; title: string }[];
+}) {
   const pathname = usePathname();
-  const [quizzes, setQuizzes] = useState<Quiz[]>([]);
-
-  useEffect(() => {
-    const fetchQuizes = async () => {
-      const res = await fetch("/api/quiz", { method: "GET" });
-      const { quizzes: quizData } = await res.json();
-      console.log(quizData);
-      setQuizzes(quizData);
-    };
-
-    fetchQuizes();
-  }, []);
-
   return (
     <Sidebar>
       <SidebarHeader className="border-b px-6 py-4">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
             <FileText className="h-5 w-5" />
           </div>
@@ -78,7 +67,7 @@ export default function AppSidebar() {
         </SidebarGroup>
 
         <SidebarGroup>
-          <SidebarGroupLabel>All Quizzes ({quizzes.length})</SidebarGroupLabel>
+          <SidebarGroupLabel>All Quizzes ()</SidebarGroupLabel>
           <SidebarGroupContent>
             <ScrollArea className="h-[400px]">
               <SidebarMenu>
@@ -102,7 +91,12 @@ export default function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter className="border-t p-4">
-        <Button variant="ghost" className="w-full justify-start" size="sm">
+        <Button
+          onClick={() => signOut()}
+          variant="ghost"
+          className="w-full justify-start"
+          size="sm"
+        >
           <LogOut className="h-4 w-4 mr-2" />
           Logout
         </Button>

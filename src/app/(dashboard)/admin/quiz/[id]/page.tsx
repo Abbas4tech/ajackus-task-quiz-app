@@ -1,8 +1,27 @@
+import { getAllQuizzes, getQuizById } from "@/actions/quiz";
 import QuizFormComponent from "@/components/QuizForm";
 import React from "react";
 
-const page = () => {
-  return <QuizFormComponent mode="edit" />;
+const EditQuizDetails = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
+  const { id } = await params;
+  const data = await getQuizById(id);
+  const t = await getAllQuizzes();
+  console.log("t", t);
+
+  const quizData = {
+    title: data.title,
+    description: data.description,
+    questions: data.questions.map((q) => ({
+      questionText: q.questionText,
+      options: q.options,
+      correctAnswer: q.correctAnswer,
+    })),
+  };
+  return <QuizFormComponent initialData={quizData} mode="edit" />;
 };
 
-export default page;
+export default EditQuizDetails;

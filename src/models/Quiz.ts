@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Model } from "mongoose";
+import mongoose, { Schema, Model, Types } from "mongoose";
 
 export interface IQuestion {
   questionText: string;
@@ -6,7 +6,8 @@ export interface IQuestion {
   correctAnswer: string;
 }
 
-export interface Quiz extends Document {
+export interface Quiz {
+  _id: Types.ObjectId;
   title: string;
   description?: string;
   questions: IQuestion[];

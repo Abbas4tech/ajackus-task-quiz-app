@@ -237,7 +237,7 @@ export default function QuizFormComponent({
                         (opt, idx) =>
                           opt && (
                             <div
-                              className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-slate-50 transition-colors"
+                              className="flex items-center space-x-3 p-3 rounded-lg border transition-colors"
                               key={idx}
                             >
                               <RadioGroupItem
@@ -287,10 +287,10 @@ export default function QuizFormComponent({
                   {fields.map((q, idx) => (
                     <div
                       key={idx}
-                      className="p-4 border rounded-lg bg-white hover:shadow-md transition-shadow"
+                      className="p-4 border rounded-lg hover:shadow-md transition-shadow"
                     >
                       <div className="flex justify-between items-start mb-3">
-                        <p className="font-semibold text-slate-900">
+                        <p className="font-semibold">
                           {idx + 1}. {q.questionText}
                         </p>
                         <Button
@@ -307,9 +307,8 @@ export default function QuizFormComponent({
                           <div
                             key={oidx}
                             className={`flex items-center gap-2 text-sm ${
-                              opt === q.correctAnswer
-                                ? "text-green-700 font-medium"
-                                : "text-slate-600"
+                              opt === q.correctAnswer &&
+                              "text-green-700 font-bold"
                             }`}
                           >
                             <span className="w-6 h-6 flex items-center justify-center rounded-full border text-xs">

@@ -10,12 +10,18 @@ import { notFound } from "next/navigation";
 export async function getAllQuizzes(limit = 50, skip = 0) {
   await dbConnect();
   const quizzes = await QuizModel.find({})
-    .select("title description createdAt updatedAt questions")
+    .select("title description createdAt updatedAt")
     .sort({ createdAt: -1 })
     .skip(skip)
     .limit(limit)
     .lean();
-  return quizzes;
+  console.log(quizzes);
+
+  const res = quizzes.map((item) => ({
+    _id: item._id.toString(),
+    title: item.title,
+  }));
+  return res;
 }
 
 /**
