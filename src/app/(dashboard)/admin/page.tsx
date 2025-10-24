@@ -1,14 +1,8 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { signOut } from "next-auth/react";
-import React from "react";
-
-const AdminPanel = () => {
+export default function AdminDashboard() {
   return (
     <div>
-      <Button onClick={() => signOut()}>Logout</Button>
+      <h2 className="text-2xl font-bold mb-4">Dashboard</h2>
+      <p>Welcome to the admin panel</p>
     </div>
   );
-};
-
-export default AdminPanel;
+}
