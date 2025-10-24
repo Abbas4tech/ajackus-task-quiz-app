@@ -9,9 +9,6 @@ const EditQuizDetails = async ({
 }) => {
   const { id } = await params;
   const data = await getQuizById(id);
-  const t = await getAllQuizzes();
-  console.log("t", t);
-
   const quizData = {
     title: data.title,
     description: data.description,
