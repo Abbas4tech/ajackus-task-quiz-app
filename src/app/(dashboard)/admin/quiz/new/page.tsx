@@ -1,5 +1,5 @@
-import QuizFormComponent from "@/components/QuizForm";
+import { QuizForm } from "@/components";
 
 export default function CreateQuizPage() {
-  return <QuizFormComponent mode="create" />;
+  return <QuizForm mode="create" />;
 }

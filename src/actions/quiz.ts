@@ -1,15 +1,23 @@
 "use server";
 
+import { authOptions } from "@/app/api/auth/options";
 import { dbConnect } from "@/db/connection";
 import QuizModel, { Quiz } from "@/models/Quiz";
-import { notFound } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { notFound, redirect } from "next/navigation";
 
 /**
  * Fetch all quizzes with optional pagination.
  */
 export async function getAllQuizzes(limit = 50, skip = 0) {
   await dbConnect();
-  const quizzes = await QuizModel.find({})
+
+  const session = await getServerSession(authOptions);
+  if (!session?.user) {
+    redirect("/");
+  }
+
+  const quizzes = await QuizModel.find({ createdBy: session.user._id })
     .select("title description createdAt updatedAt")
     .sort({ createdAt: -1 })
     .skip(skip)

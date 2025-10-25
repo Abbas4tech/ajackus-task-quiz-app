@@ -67,7 +67,7 @@ export default function AppSidebar({
         </SidebarGroup>
 
         <SidebarGroup>
-          <SidebarGroupLabel>All Quizzes ()</SidebarGroupLabel>
+          <SidebarGroupLabel>All Quizzes ({quizzes.length})</SidebarGroupLabel>
           <SidebarGroupContent>
             <ScrollArea className="h-[400px]">
               <SidebarMenu>

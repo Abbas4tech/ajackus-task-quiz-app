@@ -1,5 +1,5 @@
 import { getAllQuizzes } from "@/actions/quiz";
-import AppSidebar from "@/components/AppSidebar";
+import { AppSidebar } from "@/components";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 export default async function AdminLayout({

@@ -1,5 +1,5 @@
 import { getAllQuizzes, getQuizById } from "@/actions/quiz";
-import QuizFormComponent from "@/components/QuizForm";
+import { QuizForm } from "@/components";
 import React from "react";
 
 const EditQuizDetails = async ({
@@ -18,7 +18,7 @@ const EditQuizDetails = async ({
       correctAnswer: q.correctAnswer,
     })),
   };
-  return <QuizFormComponent initialData={quizData} mode="edit" />;
+  return <QuizForm initialData={quizData} mode="edit" />;
 };
 
 export default EditQuizDetails;
